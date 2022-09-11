@@ -1,7 +1,7 @@
 ﻿using DataAccess.Entities;
 using Microsoft.AspNetCore.Mvc;
 using CustomExceptions;
-using Models;
+
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;

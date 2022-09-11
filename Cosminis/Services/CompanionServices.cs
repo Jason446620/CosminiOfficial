@@ -1,6 +1,6 @@
 using DataAccess;
 using CustomExceptions;
-using Models;
+
 using DataAccess.Entities;
 
 namespace Services;

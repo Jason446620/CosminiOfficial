@@ -8,15 +8,15 @@ namespace DataAccess.Entities
         public FoodElement()
         {
             FoodStats = new HashSet<FoodStat>();
-            SpeciesFoodElementIdFkNavigations = new HashSet<Species>();
-            SpeciesOpposingEleNavigations = new HashSet<Species>();
+            SpeciesFoodElementFkNavigations = new HashSet<Species>();
+            SpeciesOppFoodElementFkNavigations = new HashSet<Species>();
         }
 
         public int FoodElementId { get; set; }
         public string FoodElement1 { get; set; } = null!;
 
         public virtual ICollection<FoodStat> FoodStats { get; set; }
-        public virtual ICollection<Species> SpeciesFoodElementIdFkNavigations { get; set; }
-        public virtual ICollection<Species> SpeciesOpposingEleNavigations { get; set; }
+        public virtual ICollection<Species> SpeciesFoodElementFkNavigations { get; set; }
+        public virtual ICollection<Species> SpeciesOppFoodElementFkNavigations { get; set; }
     }
 }

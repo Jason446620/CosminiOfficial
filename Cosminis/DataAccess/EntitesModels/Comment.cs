@@ -6,8 +6,8 @@ public partial class Comment
         { 
             return 
                 $"CommentId: {this.CommentId}, " + 
-                $"UserIdFk: {this.UserIdFk}, " +
-                $"PostIdFk: {this.PostIdFk}, " +
+                $"UserIdFk: {this.UserFk}, " +
+                $"PostIdFk: {this.PostFk}, " +
                 $"Content: {this.Content} "; 
         }  
     }

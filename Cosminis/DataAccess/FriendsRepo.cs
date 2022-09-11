@@ -1,6 +1,6 @@
 using DataAccess.Entities;
-using CustomExceptions;
 using Models;
+using CustomExceptions;
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +10,10 @@ namespace DataAccess;
  
 public class FriendsRepo : IFriendsDAO
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
     private readonly IUserDAO _userRepo;
 
-    public FriendsRepo(wearelosingsteamContext context, IUserDAO userRepo)
+    public FriendsRepo(CosminisContext context, IUserDAO userRepo)
     {
         _context = context;
         _userRepo = userRepo;
@@ -37,7 +37,7 @@ public class FriendsRepo : IFriendsDAO
 
         IEnumerable<Friends> friendsQuery =                             //This will return friends EVEN IF THEY ARE REMOVED OR BLOCKED BTW... one for only 'accepted' friends below.
             (from Friends in _context.Friends
-            where (Friends.UserIdTo == userToLookup.UserId) || (Friends.UserIdFrom == userToLookup.UserId)
+            where (Friends.UserToFk == userToLookup.UserId) || (Friends.UserFromFk == userToLookup.UserId)
             select Friends).ToList();
 
         if(friendsQuery == null)                                        //Throws an exception if the user is unpopular.
@@ -118,10 +118,11 @@ public class FriendsRepo : IFriendsDAO
         return statusToBeEdited;                                            //returns the edited relationship
     }
 
+    /*
     public Friends SearchByRelationshipId(int relationshipId)           //Searching for a specific relationship by the relationship Id, and returning it
     {
         return _context.Friends.FirstOrDefault(friends => friends.RelationshipId == relationshipId) ?? throw new ResourceNotFound();
-    }
+    }*/
 
     public List<Friends> CheckRelationshipStatusByUsername(string username, string status)//looks for all relationships of a specific status for 1 user. (All accepted, all pending....)
     {   
@@ -382,8 +383,8 @@ public class FriendsRepo : IFriendsDAO
         {
             Friends newRelationship = new Friends
             {
-                UserIdFrom = (int)toBeAccepted.UserId,
-                UserIdTo = (int)requestReceiver.UserId,
+                UserFromFk = (int)toBeAccepted.UserId,
+                UserToFk = (int)requestReceiver.UserId,
                 Status = "Pending"
             };
 
@@ -440,8 +441,8 @@ public class FriendsRepo : IFriendsDAO
         {
             Friends newRelationship = new Friends
             {
-                UserIdFrom = (int)toBeAccepted.UserId,
-                UserIdTo = (int)requestReceiver.UserId,
+                UserFromFk = (int)toBeAccepted.UserId,
+                UserToFk = (int)requestReceiver.UserId,
                 Status = "Pending"
             };
 

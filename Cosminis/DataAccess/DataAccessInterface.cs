@@ -1,4 +1,3 @@
-using Models;
 using System.Data.SqlClient;
 using DataAccess.Entities;
 
@@ -27,7 +26,7 @@ public interface IFriendsDAO
     public List<Friends> CheckRelationshipStatusByUsername(string username, string status);
     public List<Friends> CheckRelationshipStatusByUserId(int userId, string status);
     public Friends FriendsByUserIds(int searchingUserId, int user2BeSearchedFor);
-    public Friends SearchByRelationshipId(int relationshipId);
+    //public Friends SearchByRelationshipId(int relationshipId);
 }
 
 public interface IUserDAO

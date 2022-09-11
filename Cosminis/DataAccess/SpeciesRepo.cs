@@ -1,7 +1,7 @@
 /*            *This code could be use to expand our project in case we decide to implement "stats" going forward*
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
+
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,9 +11,9 @@ namespace DataAccess;
  
 public class SpeciesRepo : ISpeciesDAO
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
 
-    public SpeciesRepo(wearelosingsteamContext context)
+    public SpeciesRepo(CosminisContext context)
     {
         _context = context;
     }

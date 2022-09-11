@@ -1,6 +1,6 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
+
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -198,13 +198,13 @@ public class BattleServices
             }
             foreach(Companion comp in CompOne)
             {
-                CompOneHunger.Add(comp.Hunger ?? 0); //gather their combat relevant stats
-                CompOneMood.Add(comp.Mood ?? 0);
+                CompOneHunger.Add(comp.Hunger); //gather their combat relevant stats
+                CompOneMood.Add(comp.Mood);
             }
             foreach(Companion comp in CompTwo)
             {
-                CompTwoHunger.Add(comp.Hunger ?? 0);
-                CompTwoMood.Add(comp.Mood ?? 0);
+                CompTwoHunger.Add(comp.Hunger);
+                CompTwoMood.Add(comp.Mood);
             }
 
             returnValue = (int) (-1 * (((CompOneHunger.Average()/2)-(CompTwoHunger.Average()/2)) + ((CompOneMood.Average()/2)-(CompTwoMood.Average()/2))));

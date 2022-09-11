@@ -1,6 +1,5 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +8,10 @@ namespace DataAccess;
 
 public class LikeRepo:ILikeIt
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
     private readonly IResourceGen _ResourceRepo;
 
-    public LikeRepo(wearelosingsteamContext context, IResourceGen ResourceRepo)
+    public LikeRepo(CosminisContext context, IResourceGen ResourceRepo)
     {
         _context = context;
         _ResourceRepo = ResourceRepo;
@@ -30,7 +29,7 @@ public class LikeRepo:ILikeIt
         int rewardAmount = 1; //just one gold for now
         User LikingUser = _context.Users.Find(UserID); //Fetch and link the user
         Post LikedPost = _context.Posts.Find(PostID); //Fetch and link the post
-        User User2Add2 = _context.Users.Find(LikedPost.UserIdFk); //Fetch and link the user for gold generation
+        User User2Add2 = _context.Users.Find(LikedPost.UserFk); //Fetch and link the user for gold generation
         _context.Entry(LikingUser).Collection("PostIdFks").Load();
         _context.Entry(LikedPost).Collection("UserIdFks").Load();
 
@@ -38,15 +37,15 @@ public class LikeRepo:ILikeIt
         {
             throw new ResourceNotFound("Either the user or the post does not exist");
         }
-        if(LikingUser.PostIdFks.Contains(LikedPost) || LikedPost.UserIdFks.Contains(LikingUser)) //check if such many to many relationship already exist
+        if(LikingUser.PostFks.Contains(LikedPost) || LikedPost.UserFks.Contains(LikingUser)) //check if such many to many relationship already exist
         {
             throw new DuplicateLikes("This post has already been liked by this user");
         }
 
         try
         {
-            LikingUser.PostIdFks.Add(LikedPost);
-            LikedPost.UserIdFks.Add(LikingUser);
+            LikingUser.PostFks.Add(LikedPost);
+            LikedPost.UserFks.Add(LikingUser);
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
             _ResourceRepo.AddGold(User2Add2,rewardAmount);
@@ -71,7 +70,7 @@ public class LikeRepo:ILikeIt
         int rewardAmount = -1; //just one gold for now, this will cause a problem where the poster is now in debt. Hopefully no one notices this and approves me anyway.
         User UnLikingUser = _context.Users.Find(UserID); //Fetch and link the user
         Post UnLikedPost = _context.Posts.Find(PostID); //Fetch and link the post
-        User User2Add2 = _context.Users.Find(UnLikedPost.UserIdFk); //Fetch and link the user for gold generation
+        User User2Add2 = _context.Users.Find(UnLikedPost.UserFk); //Fetch and link the user for gold generation
         _context.Entry(UnLikedPost).Collection("UserIdFks").Load(); //This loads the FKs into the collection
         _context.Entry(UnLikingUser).Collection("PostIdFks").Load(); //This loads the FKs into the collection
 
@@ -79,11 +78,11 @@ public class LikeRepo:ILikeIt
         {
             throw new ResourceNotFound("Either the user or the post does not exist");
         }
-        if(UnLikingUser.PostIdFks.Contains(UnLikedPost) || UnLikedPost.UserIdFks.Contains(UnLikingUser)) //check if such many to many relationship already exist
+        if(UnLikingUser.PostFks.Contains(UnLikedPost) || UnLikedPost.UserFks.Contains(UnLikingUser)) //check if such many to many relationship already exist
         {
             try
             {
-                UnLikedPost.UserIdFks.Remove(UnLikingUser); //updates one should update em all
+                UnLikedPost.UserFks.Remove(UnLikingUser); //updates one should update em all
                 _context.SaveChanges();
                 _context.ChangeTracker.Clear();
                 _ResourceRepo.AddGold(User2Add2,rewardAmount);
@@ -111,6 +110,6 @@ public class LikeRepo:ILikeIt
             throw new ResourceNotFound("The post does not exist");
         }
         _context.Entry(CheckingPost).Collection("UserIdFks").Load(); //This loads the FKs into the collection
-        return CheckingPost.UserIdFks.Count();
+        return CheckingPost.UserFks.Count();
     }
 }

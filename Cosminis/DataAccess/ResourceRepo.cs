@@ -1,4 +1,3 @@
-using Models;
 using System.Data.SqlClient;
 using DataAccess.Entities;
 using CustomExceptions;
@@ -7,9 +6,9 @@ namespace DataAccess;
 
 public class ResourceRepo : IResourceGen
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
 
-    public ResourceRepo (wearelosingsteamContext context)
+    public ResourceRepo (CosminisContext context)
     {
         _context = context;
     }
@@ -100,15 +99,15 @@ public class ResourceRepo : IResourceGen
 
         FoodInventory Inventory2Add2 = 
         (from IV in _context.FoodInventories
-        where (IV.UserIdFk == User.UserId) && (IV.FoodStatsIdFk == Food2Add.FoodStatsId)
+        where (IV.UserFk == User.UserId) && (IV.FoodStatsFk == Food2Add.FoodStatsId)
         select IV).FirstOrDefault(); //this whole thing returns either a foodInvertory or null
 
         if(Inventory2Add2 == null) //if user does not have this kind of food yet
         {
             Inventory2Add2 = new FoodInventory
             {
-                UserIdFk = (int) User.UserId,
-                FoodStatsIdFk = Food2Add.FoodStatsId,
+                UserFk = (int) User.UserId,
+                FoodStatsFk = Food2Add.FoodStatsId,
                 FoodCount = Amount
             };
             _context.Add(Inventory2Add2); //Add a new item onto the table
@@ -139,14 +138,14 @@ public class ResourceRepo : IResourceGen
         }
         FoodInventory? Inventory2Add2 =
         (from IV in _context.FoodInventories
-         where (IV.UserIdFk == User.UserId) && (IV.FoodStatsIdFk == Food2Add.FoodStatsId)
+         where (IV.UserFk == User.UserId) && (IV.FoodStatsFk == Food2Add.FoodStatsId)
          select IV).FirstOrDefault();
         if (Inventory2Add2 == null)
         {
             Inventory2Add2 = new FoodInventory
             {
-                UserIdFk = (int)User.UserId,
-                FoodStatsIdFk = Food2Add.FoodStatsId,
+                UserFk = (int)User.UserId,
+                FoodStatsFk = Food2Add.FoodStatsId,
                 FoodCount = amount
             };
             _context.Add(Inventory2Add2); 
@@ -185,7 +184,7 @@ public class ResourceRepo : IResourceGen
 
     public List<FoodInventory> GetFoodInventoryByUserId(int userId)
     {
-        return _context.FoodInventories.Where(food => food.UserIdFk == userId).ToList();
+        return _context.FoodInventories.Where(food => food.UserFk == userId).ToList();
     }
 
     public List<FoodInventory> Purchase(int userId, int[] foodQtyArr, int eggQty) //foodIdArr = foodTypes(got rid of this), foodQtyArr = amounts, eggQty = egg amount
@@ -223,8 +222,8 @@ public class ResourceRepo : IResourceGen
             {
                 FoodInventory newFood = new FoodInventory()
                 {
-                    UserIdFk = (int)userToBuy.UserId,
-                    FoodStatsIdFk = i,
+                    UserFk = (int)userToBuy.UserId,
+                    FoodStatsFk = i,
                     FoodCount = 0
                 };
                 _context.FoodInventories.Add(newFood);
@@ -311,8 +310,8 @@ public class ResourceRepo : IResourceGen
             {
                 FoodInventory newFood = new FoodInventory()
                 {
-                    UserIdFk = (int)userToBuy.UserId,
-                    FoodStatsIdFk = i,
+                    UserFk = (int)userToBuy.UserId,
+                    FoodStatsFk = i,
                     FoodCount = 0
                 };
                 _context.FoodInventories.Add(newFood);
@@ -340,7 +339,7 @@ public class ResourceRepo : IResourceGen
 
         Order newOrder = new Order()
         {
-            UserIdFk = (int)userToBuy.UserId, 
+            UserFk = (int)userToBuy.UserId, 
             Cost = cost,
             TimeOrdered = DateTime.Now
         };       
@@ -364,7 +363,7 @@ public class ResourceRepo : IResourceGen
 
         IEnumerable<Order> orderQuery =                             //Query to search companions by userId.
             from Orders in _context.Orders
-            where Orders.UserIdFk == userToBuy.UserId
+            where Orders.UserFk == userToBuy.UserId
             select Orders;
     
         foreach(Order order in orderQuery)                //Going through each object and adding it to a list.

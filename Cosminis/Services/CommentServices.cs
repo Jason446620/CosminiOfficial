@@ -1,6 +1,6 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
+
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -22,13 +22,13 @@ public class CommentServices
     {
         Comment newComment = new Comment()
         {
-            UserIdFk = commenterID,
-            PostIdFk = postsID,
+            UserFk = commenterID,
+            PostFk = postsID,
             Content = content
         };
 
     	User shellUser = new User();
-    	shellUser.UserId = newComment.UserIdFk; //this sets the shellUser's id to the comment's useridkfk, now shellUser actually has some useful info (a user ID) 
+    	shellUser.UserId = newComment.UserFk; //this sets the shellUser's id to the comment's useridkfk, now shellUser actually has some useful info (a user ID) 
 
     	int goldToAdd = 0;
     	int charCount = newComment.Content.Length;  //gets the length of each comment's content

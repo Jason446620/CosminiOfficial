@@ -1,6 +1,6 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
+
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -192,7 +192,7 @@ public class InteractionService
 
         try
         {
-            DateTime notNullableDate = companionHungerToShift.TimeSinceLastChangedHunger ?? DateTime.Now; //who thought this was a good idea?
+            DateTime notNullableDate = companionHungerToShift.TimeSinceLastChangedHunger; //who thought this was a good idea?
             double totalMinutes = DateTime.Now.Subtract(notNullableDate).TotalMinutes;  //converting minutes to a double
             if(isDisplay)//determine the amount
             {
@@ -208,7 +208,7 @@ public class InteractionService
 
             Random RNGjesusManifested = new Random(); 
             int offSet = RNGjesusManifested.Next(-10,11);
-            double compHung = companionHungerToShift.Hunger ?? 75; //whoever set the mood and hunger to be nullable in the database needs to be condemned 
+            double compHung = companionHungerToShift.Hunger; //whoever set the mood and hunger to be nullable in the database needs to be condemned 
             double chanceRR = (100 * Math.Exp(-0.05*compHung)) + offSet; //Maths
             Console.WriteLine(100 * Math.Exp(-0.05*compHung));
             bool RR = (RNGjesusManifested.Next(010) < chanceRR); //see of the emotion gets re rolled
@@ -438,7 +438,7 @@ public class InteractionService
         Random RNGjesusManifested = new Random();  
 
         int offSet = RNGjesusManifested.Next(-10,11);
-        double compMood = checkingComp.Mood ?? 75; //whoever set the mood and hunger to be nullable in the database needs to be condemned 
+        double compMood = checkingComp.Mood; //whoever set the mood and hunger to be nullable in the database needs to be condemned 
         double chanceRR = (100 * Math.Exp(-0.05*compMood)) + offSet; //Maths
         Console.WriteLine(100 * Math.Exp(-0.05*compMood));
         bool RR = (RNGjesusManifested.Next(010) < chanceRR); //see of the emotion gets re rolled
@@ -463,7 +463,7 @@ public class InteractionService
             {            
                 Post = new Post()//define post properties (This person came up and feed my companion!).
                 {
-                    UserIdFk = checkingComp.UserFk,
+                    UserFk = checkingComp.UserFk,
                     Content = feedingUser.Password + " fed my companion while I was away, thank you!"
                 };
             }
@@ -471,7 +471,7 @@ public class InteractionService
             {
                 Post = new Post()//define post properties (This person came up and feed my companion!).
                 {
-                    UserIdFk = checkingComp2.UserFk,
+                    UserFk = checkingComp2.UserFk,
                     Content = feedingUser.Password + " fed my companion some awful food, and now it's so hostile!... Thanks for nothing!"
                 };
             }            
@@ -511,7 +511,7 @@ public class InteractionService
             Random RNGjesusManifested = new Random();
 
             int offSet = RNGjesusManifested.Next(-10,11);
-            double compHung = companionInstance.Hunger ?? 75; //whoever set the mood and hunger to be nullable in the database needs to be condemned 
+            double compHung = companionInstance.Hunger; //whoever set the mood and hunger to be nullable in the database needs to be condemned 
             double chanceRR = (100 * Math.Exp(-0.05*compHung)) + offSet; //Maths
             Console.WriteLine(100 * Math.Exp(-0.05*compHung));
             bool RR = (RNGjesusManifested.Next(010) < chanceRR); //see of the emotion gets re rolled
@@ -536,7 +536,7 @@ public class InteractionService
                 {
                     Post = new Post()//define post properties (This person came up and feed my companion!).
                     {
-                        UserIdFk = companionInstance2.UserFk,
+                        UserFk = companionInstance2.UserFk,
                         Content = feedingUser.Password + " pet my companion while I was away, thank you!"
                     };                    
                 }
@@ -544,7 +544,7 @@ public class InteractionService
                 {
                     Post = new Post()//define post properties (This person came up and feed my companion!).
                     {
-                        UserIdFk = companionInstance2.UserFk,
+                        UserFk = companionInstance2.UserFk,
                         Content = feedingUser.Password + " pet my companion while it was hostile and it's mood went down... Thanks for nothing!"
                     };   
                 }

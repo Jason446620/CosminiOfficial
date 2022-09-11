@@ -1,6 +1,6 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
+
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +37,7 @@ public class FriendServices
         }
     }
 
+    /*
     public Friends SearchByRelationshipId(int relationshipId)
     {
         try
@@ -52,7 +53,7 @@ public class FriendServices
         {
             throw;
         }
-    }   
+    }*/  
 
     public List<Friends> ViewRelationShipsByStatus(string status)
     {

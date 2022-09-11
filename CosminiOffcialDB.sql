@@ -27,6 +27,8 @@ create table Cosminis.companions(
 		companion_birthday datetime not null default getdate()
 		);
 	
+insert into Cosminis.companions (user_fk, species_fk, emotion, nickname) values (2, 2, 7, 'Jason');
+	
 create table Cosminis.conversation(
 		conversationId int identity primary key,
 		species_fk int not null foreign key references Cosminis.species(speciesId),
@@ -121,7 +123,7 @@ create table Cosminis.emotionChart(
 
 /*COMMAND TO SCAFFOLD
  * 
- * dotnet ef dbcontext scaffold <"Server=tcp:p2dbs.database.windows.net,1433;Initial Catalog=wearelosingsteam;Persist Security Info=False;User ID=wearelosingsteam;Password=weL0stSteam;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"> Microsoft.EntityFrameworkCore.SqlServer --startup-project </DataAccess> --force output -dir Entities --no-onconfiguring
+ * dotnet ef dbcontext scaffold "Server=tcp:cosminis.database.windows.net,1433;Initial Catalog=Cosminis;Persist Security Info=False;User ID=cosmega;Password=qaw4avp4ABY@pjn1mhu;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer --startup-project ../ComsiniAPI --force --output-dir Entities --no-onconfiguring
  * 
  * ^Force output dir part might not have the right syntax...
  * 
@@ -132,7 +134,7 @@ insert into Cosminis.foodInventory (user_fk, foodStats_fk, foodCount) values (4,
 
 insert into Cosminis.friends (userTo_fk, userFrom_fk, status) values (1, 4, 'Pending');
 
-select * from Cosminis.foodElement;
+select * from Cosminis.users;
 delete from Cosminis.users where userId = 1;
 
 update Cosminis.foodInventory set user_fk = 4, foodStats_fk = 1, foodCount = 10;
@@ -287,19 +289,19 @@ create table Cosminis.users;
 
 alter table Cosminis.users drop column showcaseCompanion_fk;
 
-alter table Cosminis.users add showcaseCompanion_fk int not null foreign key references Cosminis.companions(companionId);
+alter table Cosminis.users add showcaseCompanion_fk int foreign key references Cosminis.companions(companionId);
 
 alter table sublanguages.users drop constraint likes_cilantro;
 
 --These are for our changes right now on 8/13
 
-alter table Cosminis.companions add TimeSinceLastFed datetime;
+alter table Cosminis.companions add TimeSinceLastFed datetime not null default getdate();
 
 alter table Cosminis.companions add TimeSinceLastPet datetime;
 
-alter table Cosminis.species drop column elementType;
+alter table Cosminis.users drop column showcaseCompanion_fk;
 
-alter table Cosminis.species drop constraint CK__species__element__15DA3E5D;
+alter table Cosminis.users drop constraint FK__users__showcaseC__625A9A57;
 
 alter table Cosminis.species add opposingEle int foreign key references WALS_P2.foodElement(foodElementId);
 

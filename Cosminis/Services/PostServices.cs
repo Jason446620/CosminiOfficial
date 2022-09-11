@@ -1,6 +1,6 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
+
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -27,10 +27,10 @@ public class PostServices
         Post newPost = new Post()
         {
             Content = Content,
-            UserIdFk = PosterID
+            UserFk = PosterID
         };
     	User shellUser = new User();
-    	shellUser.UserId = newPost.UserIdFk; //this sets the shellUser's id to the post's useridkfk, now shellUser actually has some useful info (a user ID) 
+    	shellUser.UserId = newPost.UserFk; //this sets the shellUser's id to the post's useridkfk, now shellUser actually has some useful info (a user ID) 
 
     	int Weight = 30;
         int goldToAdd = 0;
@@ -117,13 +117,13 @@ public class PostServices
             List<Post> friendsPosts = new List<Post>();
             for (int i = 0; i < relationships.Count; i++) //we are iterating through all possible relationships
             {
-                if (relationships[i].UserIdTo == userInfo.UserId)
+                if (relationships[i].UserToFk == userInfo.UserId)
                 {
-                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].UserIdFrom)).ToList(); //this returns a list of posts for the users friend
+                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].UserFromFk)).ToList(); //this returns a list of posts for the users friend
                 }
                 else
                 {
-                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].UserIdTo)).ToList(); //this returns a list of posts for the users friend
+                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].UserToFk)).ToList(); //this returns a list of posts for the users friend
                     //Concat stiches the two Lists together
                 }
             }

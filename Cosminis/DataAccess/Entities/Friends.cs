@@ -1,19 +1,17 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DataAccess.Entities
 {
     public partial class Friends
     {
-        public int RelationshipId { get; set; }
-        public int UserIdFrom { get; set; }
-        public int UserIdTo { get; set; }
+        public int UserFromFk { get; set; }
+        public int UserToFk { get; set; }
         public string Status { get; set; } = null!;
 
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual User UserIdFromNavigation { get; set; } = null!;
+        public virtual User UserFromFkNavigation { get; set; } = null!;
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual User UserIdToNavigation { get; set; } = null!;
+        public virtual User UserToFkNavigation { get; set; } = null!;
     }
 }

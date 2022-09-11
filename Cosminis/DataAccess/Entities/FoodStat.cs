@@ -12,7 +12,7 @@ namespace DataAccess.Entities
 
         public int FoodStatsId { get; set; }
         public int FoodElementFk { get; set; }
-        public string? Description { get; set; }
+        public string Description { get; set; } = null!;
         public string FoodName { get; set; } = null!;
         public int HungerRestore { get; set; }
 

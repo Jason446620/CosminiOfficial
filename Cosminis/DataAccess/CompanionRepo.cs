@@ -1,18 +1,18 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
+
 namespace DataAccess;
  
 public class CompanionRepo : ICompanionDAO
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
 
-    public CompanionRepo(wearelosingsteamContext context)
+    public CompanionRepo(CosminisContext context)
     {
         _context = context;
     }

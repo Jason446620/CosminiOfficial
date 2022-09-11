@@ -1,6 +1,5 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +8,10 @@ namespace DataAccess;
  
 public class PostRepo : IPostDAO
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
     private readonly IUserDAO _userRepo;
 
-    public PostRepo(wearelosingsteamContext context, IUserDAO userRepo)
+    public PostRepo(CosminisContext context, IUserDAO userRepo)
     {
         _context = context;
         _userRepo = userRepo;
@@ -31,7 +30,7 @@ public class PostRepo : IPostDAO
 
     public List<Post> GetPostsByUserId(int? userId)
     {
-        return _context.Posts.Where(post => post.UserIdFk == userId).ToList();
+        return _context.Posts.Where(post => post.UserFk == userId).ToList();
     }
 
     public List<Post> GetPostsByUsername(string username)

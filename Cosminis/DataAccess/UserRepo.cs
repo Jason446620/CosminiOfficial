@@ -1,6 +1,5 @@
 ﻿using DataAccess.Entities;
 using CustomExceptions;
-using Models;
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +9,9 @@ namespace DataAccess;
  
 public class UserRepo : IUserDAO
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
 
-    public UserRepo(wearelosingsteamContext context)
+    public UserRepo(CosminisContext context)
     {
         _context = context;
     }

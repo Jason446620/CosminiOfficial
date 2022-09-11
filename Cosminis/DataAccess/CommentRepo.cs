@@ -1,6 +1,5 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +8,10 @@ namespace DataAccess;
  
 public class CommentRepo : ICommentDAO
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
     private readonly IResourceGen _resourceRepo;
 
-    public CommentRepo(wearelosingsteamContext context, IResourceGen resourceRepo)
+    public CommentRepo(CosminisContext context, IResourceGen resourceRepo)
     {
         _context = context;
         _resourceRepo = resourceRepo;
@@ -37,12 +36,12 @@ public class CommentRepo : ICommentDAO
 
     public bool AddToPostOwner(Comment comment)
     {
-        Post postInfo = _context.Posts.Find(comment.PostIdFk); 
+        Post postInfo = _context.Posts.Find(comment.PostFk); 
         if(postInfo == null) //such post does not exist
         {
             throw new PostsNotFound();
         }
-        User userInfo = _context.Users.Find(postInfo.UserIdFk); //gets the user to the associated userIDfk
+        User userInfo = _context.Users.Find(postInfo.UserFk); //gets the user to the associated userIDfk
 
         _resourceRepo.AddGold(userInfo, 3);
 
@@ -51,7 +50,7 @@ public class CommentRepo : ICommentDAO
 
     public List<Comment> GetCommentsByPostId(int postId)
     {
-        return _context.Comments.Where(comment => comment.PostIdFk == postId).ToList();
+        return _context.Comments.Where(comment => comment.PostFk == postId).ToList();
     }
 
     public bool RemoveComment(int commentId)
@@ -61,7 +60,7 @@ public class CommentRepo : ICommentDAO
         {
             throw new CommentsNotFound();
         }
-        User userInfo = _context.Users.Find(commentInfo.UserIdFk); //gets the user to the associated userIDfk
+        User userInfo = _context.Users.Find(commentInfo.UserFk); //gets the user to the associated userIDfk
 
             _resourceRepo.AddGold(userInfo, -3);
             _context.Comments.Remove(commentInfo); 

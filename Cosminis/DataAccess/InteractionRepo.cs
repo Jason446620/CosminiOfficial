@@ -1,6 +1,5 @@
 using DataAccess.Entities;
 using CustomExceptions;
-using Models;
 using System.Data.SqlClient;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +9,12 @@ namespace DataAccess;
 
 public class InteractionRepo : Interactions
 {
-    private readonly wearelosingsteamContext _context;
+    private readonly CosminisContext _context;
     private readonly IUserDAO _userRepo;
     private readonly ICompanionDAO _compRepo;
     private readonly IResourceGen _ResourceRepo;
     
-    public InteractionRepo(wearelosingsteamContext context, IUserDAO userRepo, ICompanionDAO compRepo, IResourceGen ResourceRepo)
+    public InteractionRepo(CosminisContext context, IUserDAO userRepo, ICompanionDAO compRepo, IResourceGen ResourceRepo)
     {
         _context = context;
         _userRepo = userRepo;
@@ -123,7 +122,7 @@ public class InteractionRepo : Interactions
     {
         Companion companionToStarve = _context.Companions.Find(companionID);  //Retrieve companion object from database by the given CompanionID
 
-        DateTime notNullableDate = companionToStarve.TimeSinceLastFed ?? DateTime.Now;
+        DateTime notNullableDate = companionToStarve.TimeSinceLastFed;
         double totalMinutes = DateTime.Now.Subtract(notNullableDate).TotalMinutes; 
 
         companionToStarve.TimeSinceLastFed = DateTime.Now;
@@ -162,7 +161,7 @@ public class InteractionRepo : Interactions
 
         companionToStarve.TimeSinceLastFed = DateTime.Now;
 
-        bool love = (species2check.FoodElementIdFk == food2Feed.FoodStatsId);
+        bool love = (species2check.FoodElementFk == food2Feed.FoodStatsId);
         bool hate = (species2check.OpposingEle == food2Feed.FoodStatsId);
         int baseAmountHunger = 0; //neither of these numbers make any damm sense
         int baseAmountMood = 0; 
@@ -288,7 +287,7 @@ public class InteractionRepo : Interactions
             throw new TooSoon();
         }
 
-        DateTime notNullableDate = companionToPet.TimeSinceLastPet ?? DateTime.Now;
+        DateTime notNullableDate = companionToPet.TimeSinceLastPet;
         double totalMinutes = DateTime.Now.Subtract(notNullableDate).TotalMinutes; 
 
         if(totalMinutes < 5)
