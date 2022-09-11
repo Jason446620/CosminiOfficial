@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddDbContext<CosminisContext>(options => options.UseSqlServer("Server=tcp:cosminis.database.windows.net,1433;Initial Catalog=Cosminis;Persist Security Info=False;User ID=cosmega;Password=qaw4avp4ABY@pjn1mhu;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+builder.Services.AddDbContext<CosminisContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
 builder.Services.AddScoped<IUserDAO, UserRepo>();
