@@ -70,10 +70,10 @@ public class PostServices
     		goldToAdd = 10;
     	}
 
-        if(!_resourceRepo.AddFood(shellUser, Weight))
+        /*if(!_resourceRepo.AddFood(shellUser, Weight))
         {
             throw new ResourceNotFound("Something had gone wrong when adding food, your companion boutta starve");
-        }
+        }*/
 
         try
         {
