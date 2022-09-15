@@ -199,10 +199,10 @@ app.MapGet("/Friends/ViewAllRelationships", (FriendsController FriendsControl) =
 	return FriendsControl.ViewAllRelationships();
 });
 
-app.MapGet("/Friends/SearchByRelationshipId", (int relationshipId, FriendsController FriendsControl) => 
+/*app.MapGet("/Friends/SearchByRelationshipId", (int relationshipId, FriendsController FriendsControl) => 
 {
 	return FriendsControl.SearchByRelationshipId(relationshipId);
-});
+});*/
 
 app.MapGet("/Friends/FriendsByUserIds", (int searchingUserId, int user2BeSearchedFor, FriendsController FriendsControl) => 
 {
