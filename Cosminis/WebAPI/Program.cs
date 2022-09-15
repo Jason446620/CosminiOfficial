@@ -6,7 +6,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Services;
 using Controllers;
-//I am wondering If I can admin priviledges, I am also wondering
+//Is this not pushing to master?
 
 var builder = WebApplication.CreateBuilder(args);
 
