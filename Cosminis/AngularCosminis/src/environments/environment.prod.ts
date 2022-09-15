@@ -1,10 +1,10 @@
 export const environment = {
   production: true,
-  api: 'https://comsinisthe2nd.azurewebsites.net/',
+  api: 'https://comsinithethird.azurewebsites.net/',
   auth:
   {
-    domain: "cosminis.us.auth0.com",
-    clientId: "KwrUdfcjrrP2cBxYLWUaQ1CVpXPjVgER",
+    domain: "dev-11iexw1h.us.auth0.com",
+    clientId: "CqzmrWNCOpXTtDmCCahcjq7IO9doIAbh",
     redirectUri: window.location.origin
   }
 };
