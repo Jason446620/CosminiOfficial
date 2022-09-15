@@ -51,7 +51,7 @@ public class FriendsController
         }	
     }
 
-    public IResult SearchByRelationshipId(int relationshipId)
+    /*public IResult SearchByRelationshipId(int relationshipId)
     {
     	try
     	{
@@ -62,7 +62,7 @@ public class FriendsController
         {
             return Results.NotFound("This relationship does not exist."); 
         }	
-    }
+    }*/
 
     public IResult ViewRelationshipsByStatus(string status)
     {
