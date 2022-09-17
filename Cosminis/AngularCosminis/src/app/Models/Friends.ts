@@ -1,6 +1,6 @@
 export interface Friends
 {
-    userIdFrom : number;
-    userIdTo : number;
+    userFromFk : number;
+    userToFk : number;
     status : string;
 }

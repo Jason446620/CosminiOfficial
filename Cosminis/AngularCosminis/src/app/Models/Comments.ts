@@ -1,8 +1,8 @@
 export interface Comment 
 {
     commentId : number;
-    userIdFk : number;
-    postIdFk : number;
+    userFk : number;
+    postFk : number;
     content : string;
     commenter? : string;
 }

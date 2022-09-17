@@ -36,7 +36,7 @@ public class PostRepo : IPostDAO
     public List<Post> GetPostsByUsername(string username)
     {
         User userInfo = _userRepo.GetUserByUserName(username);
-        //return _context.Posts.Where(post => post.UserIdFk == userInfo.UserId).ToList();
+        //return _context.Posts.Where(post => post.UserId == userInfo.UserId).ToList();
         return GetPostsByUserId(userInfo.UserId);
     } 
 

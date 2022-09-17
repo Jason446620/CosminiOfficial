@@ -30,11 +30,11 @@ public class FriendsController
         }	
     }
 
-    public IResult ViewAllFriends(int userIdToLookup)
+    public IResult ViewAllFriends(int userTo_fkLookup)
     {
     	try
     	{
-    		List<Friends> friendsList = _friendServices.ViewAllFriends(userIdToLookup);
+    		List<Friends> friendsList = _friendServices.ViewAllFriends(userTo_fkLookup);
     		return Results.Ok(friendsList); 
     	}
         catch(UserNotFound)

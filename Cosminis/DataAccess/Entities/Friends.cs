@@ -5,13 +5,13 @@ namespace DataAccess.Entities
 {
     public partial class Friends
     {
-        public int UserFromFk { get; set; }
-        public int UserToFk { get; set; }
+        public int userFromFk { get; set; }
+        public int userToFk { get; set; }
         public string Status { get; set; } = null!;
 
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual User UserFromFkNavigation { get; set; } = null!;
+        public virtual User userFromFkNavigation { get; set; } = null!;
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual User UserToFkNavigation { get; set; } = null!;
+        public virtual User userToFkNavigation { get; set; } = null!;
     }
 }

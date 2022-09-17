@@ -12,8 +12,8 @@ public enum RelationshipStatus
 public class FriendsStatusWithEnum
 { 
     public int RelationshipId { get; set; }
-    public int UserIdFrom { get; set; }
-    public int UserIdTo { get; set; }
+    public int userFrom_fk { get; set; }
+    public int userTo_fk { get; set; }
     public RelationshipStatus Status { get; set; }
     
     public string StatusToString(RelationshipStatus Status)                                   
@@ -37,8 +37,8 @@ public class FriendsStatusWithEnum
     { 
         return 
             $"RelationshipId: {this.RelationshipId}, " + 
-            $"UserId of requester: {this.UserIdFrom}, " + 
-            $"UserId of responder: {this.UserIdTo}, " + 
+            $"UserId of requester: {this.userFrom_fk}, " + 
+            $"UserId of responder: {this.userTo_fk}, " + 
             $"Status: {this.Status}"; 
     }  
 }

@@ -112,12 +112,12 @@ export class AllCosminisComponent implements OnInit
 
         this.interapi.DecrementCompanionMoodValue(this.cosminis[i].companionId as number).subscribe((res) =>
         {
-          window.sessionStorage.setItem('DisplayCompanionMood', JSON.stringify(res.mood));
+          
         })
   
       this.interapi.DecrementCompanionHungerValue(this.cosminis[i].companionId as number).subscribe((res) =>
         {
-          window.sessionStorage.setItem('DisplayCompanionHunger', JSON.stringify(res.hunger));
+          
         })
       }
 

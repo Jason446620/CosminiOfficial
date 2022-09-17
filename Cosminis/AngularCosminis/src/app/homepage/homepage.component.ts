@@ -47,18 +47,18 @@ export class HomepageComponent implements OnInit {
     
     this.comsiniApi.getCosminiByID(currentUser.showcaseCompanionFk).subscribe((res) => 
     {
-      let currentMood = res.mood;
+      let currentHung = res.hunger;
 
       this.interApi.FeedCompanion(currentUser.userId, currentUser.showcaseCompanionFk, foodId).subscribe((res) =>
       {
-        let newMood = res.mood;
+        let newHung = res.hunger;
         window.sessionStorage.setItem('DisplayCompanionHunger', JSON.stringify(res.hunger));
 
-        if(newMood > currentMood)
+        if(newHung > currentHung)
         {
           Swal.fire("Your companion LOVED its dinner!");
         }
-        else if(newMood <= currentMood)
+        else if(newHung <= currentHung)
         {
           Swal.fire("This companion really didn't like this food. Try feeding it something else next time...");
         }
@@ -72,18 +72,18 @@ export class HomepageComponent implements OnInit {
 
     this.comsiniApi.getCosminiByID(currentUser.showcaseCompanionFk).subscribe((res) => 
     {
-      let currentHung = res.mood;
+      let currentMood = res.mood;
 
       this.interApi.PetCompanion(currentUser.userId, currentUser.showcaseCompanionFk).subscribe((res) =>
       {
-        let newHung = res.mood;
+        let newMood = res.mood;
         window.sessionStorage.setItem('DisplayCompanionMood', JSON.stringify(res.mood));
 
-        if(newHung > currentHung)
+        if(newMood > currentMood)
         {
           Swal.fire("uwu! Your companion was so happy to be pet!");
         }
-        else if(newHung <= currentHung)
+        else if(newMood <= currentMood)
         {
           Swal.fire("Your companion was hostile! Try feeding it first next time...");
         }

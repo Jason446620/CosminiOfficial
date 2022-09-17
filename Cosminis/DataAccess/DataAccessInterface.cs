@@ -20,7 +20,7 @@ public interface IFriendsDAO
     public Friends AddFriendByUsername(string requesterUsername, string addedUsername);
     public Friends AddFriendByUserId(int requestedId, int addedId);
     public List<Friends> GetAllRelationships();
-    public List<Friends> ViewAllFriends(int userIdToLookup);
+    public List<Friends> ViewAllFriends(int userTo_fkLookup);
     public List<Friends> ViewRelationShipsByStatus(string status);
     public Friends EditFriendship(int editingUserID, int user2BeEdited, string status);
     public List<Friends> CheckRelationshipStatusByUsername(string username, string status);

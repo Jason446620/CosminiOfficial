@@ -290,8 +290,13 @@ public class InteractionRepo : Interactions
         DateTime notNullableDate = companionToPet.TimeSinceLastPet;
         double totalMinutes = DateTime.Now.Subtract(notNullableDate).TotalMinutes; 
 
+        Console.WriteLine(notNullableDate);
+        Console.WriteLine(DateTime.Now);
+        Console.WriteLine(totalMinutes);
+
         if(totalMinutes < 5)
         {
+            Console.WriteLine("here?");
             throw new TooSoon();
         }                
 

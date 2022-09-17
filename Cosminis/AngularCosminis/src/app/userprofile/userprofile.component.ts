@@ -16,6 +16,7 @@ import { FoodElement } from '../Models/FoodInventory';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-userprofile',
@@ -50,8 +51,8 @@ export class UserprofileComponent implements OnInit {
 
   friendshipInstance : Friends =
   {
-    userIdFrom : 1,
-    userIdTo: 1,
+    userFromFk : 1,
+    userToFk: 1,
     status: 'updatedStatus',
   }
 
@@ -93,7 +94,7 @@ export class UserprofileComponent implements OnInit {
   postInstance : Posts =
   {
     postId : 1,
-    userIdFk : 1,
+    userFk : 1,
     content : "Shrek",    
   }
 
@@ -141,7 +142,6 @@ export class UserprofileComponent implements OnInit {
     {
       this.userInstance = res;
 
-
       if(this.userInstance.username != 'DefaultUserName')
       {
         this.doesExist = true;
@@ -172,7 +172,7 @@ export class UserprofileComponent implements OnInit {
       let userID:number;   
       for(let i=0; i<this.ownersPosts.length; i++)
       {        
-        userID = this.ownersPosts[i].userIdFk;
+        userID = this.ownersPosts[i].userFk;
         this.userApi.Find(userID).subscribe((res) =>
         {
           postUser = res;
@@ -252,7 +252,7 @@ export class UserprofileComponent implements OnInit {
       let userID:number;
       for(let i =0; i<this.posts.length;i++)
       {
-        userID = this.posts[i].userIdFk;
+        userID = this.posts[i].userFk;
         this.userApi.Find(userID).subscribe((res) =>
         {
           postUser = res;
@@ -275,9 +275,9 @@ export class UserprofileComponent implements OnInit {
       this.friends = res; //this just retrieves a list of friends for now, doing the relevant logic on ngOnInit
       for(let i=0;i<this.friends.length;i++)
       {
-        if(currentID==this.friends[i].userIdFrom)
+        if(currentID==this.friends[i].userFromFk)
         {
-          this.userApi.Find(this.friends[i].userIdTo).subscribe((res) =>
+          this.userApi.Find(this.friends[i].userToFk).subscribe((res) =>
           {
             this.users[i] = res;
 
@@ -286,7 +286,7 @@ export class UserprofileComponent implements OnInit {
         }
         else
         {
-          this.userApi.Find(this.friends[i].userIdFrom).subscribe((res) =>
+          this.userApi.Find(this.friends[i].userFromFk).subscribe((res) =>
           {
             this.users[i] = res;
 
@@ -301,21 +301,34 @@ export class UserprofileComponent implements OnInit {
   {
     let stringUser : string = sessionStorage.getItem('currentUser') as string;
     let acceptingUser = JSON.parse(stringUser);
-    
-    this.searchUsers(newFriend);
 
-    this.friendApi.FriendsByUserIds(acceptingUser.userId, this.userInstance.userId as number).subscribe((res) =>
+    let newFriend420 : Users =
     {
-      this.friendshipInstance = res;
+      username : newFriend,
+      password: "NoOneIsGoingToSeeThis",
+      account_age : new Date(),
+      eggTimer : new Date(),
+      goldCount : 1,
+      eggCount : 1,
+      gemCount : 1,
+      showcaseCompanion_fk:1,
+      aboutMe:"I am Boring... zzzz snoringgg",
+    }
+    
+    this.userApi.LoginOrReggi(newFriend420).subscribe((res) =>
+    {
+      this.friendApi.FriendsByUserIds(acceptingUser.userId, res/*420*/.userId as number).subscribe((res69) =>
+      {
+        this.friendshipInstance.status = 'Accepted';
 
-      this.friendshipInstance.status = 'Accepted';
+        this.friendApi.EditFriendship(acceptingUser.userId, res.userId as number, "Accepted").subscribe((res) => 
+        {           
+          window.sessionStorage.setItem('currentUser', JSON.stringify(acceptingUser));
+        })
+        Swal.fire("Friend request accepted! Enjoy your blossoming friendship :3");     
+      })      
+    });
 
-      this.friendApi.EditFriendship(acceptingUser.userId, this.userInstance.userId as number, "Accepted").subscribe((res) => 
-      {           
-        window.sessionStorage.setItem('currentUser', JSON.stringify(acceptingUser));
-      })
-      Swal.fire("Friend request accepted! Enjoy your blossoming friendship :3");     
-    })
     this.doesExist = false;
   }
 
@@ -324,12 +337,13 @@ export class UserprofileComponent implements OnInit {
     let stringUser : string = sessionStorage.getItem('currentUser') as string;
     let currentUser : Users = JSON.parse(stringUser);
     let currentID = currentUser.userId;
+
     this.friendApi.getPendingFriends(currentID as number).subscribe((res) =>
     {
       this.friends = res;
       for(let i=0;i<this.friends.length;i++)  
       {
-        this.userApi.Find(this.friends[i].userIdFrom).subscribe((res) =>
+        this.userApi.Find(this.friends[i].userFromFk).subscribe((res) =>
         { 
           if(res.userId != currentID)
           {
@@ -353,16 +367,16 @@ export class UserprofileComponent implements OnInit {
 
       for(let i=0; i<this.friends.length;i++)
       {
-        if(searchingUser.userId==this.friends[i].userIdFrom)
+        if(searchingUser.userId==this.friends[i].userFromFk)
         {
-          this.userApi.Find(this.friends[i].userIdTo).subscribe((res) =>
+          this.userApi.Find(this.friends[i].userToFk).subscribe((res) =>
           {
             this.pendingFriends[i] = res;         
           })
         }
         else
         {
-          this.userApi.Find(this.friends[i].userIdFrom).subscribe((res) =>
+          this.userApi.Find(this.friends[i].userFromFk).subscribe((res) =>
           {
             this.pendingFriends[i] = res;
             this.friendPending = true;
@@ -538,7 +552,7 @@ export class UserprofileComponent implements OnInit {
       this.commentArr = this.commentArr.concat(res);
       for(let i = 0; i < this.commentArr.length; i++)
       {
-        this.userApi.Find(this.commentArr[i].userIdFk).subscribe((res) =>
+        this.userApi.Find(this.commentArr[i].userFk).subscribe((res) =>
         {
           this.commentArr[i].commenter = res.password;
         })
@@ -554,7 +568,7 @@ export class UserprofileComponent implements OnInit {
       this.commentArr2 = this.commentArr2.concat(res);
       for(let i = 0; i < this.commentArr2.length; i++)
       {
-        this.userApi.Find(this.commentArr2[i].userIdFk).subscribe((res) =>
+        this.userApi.Find(this.commentArr2[i].userFk).subscribe((res) =>
         {
           this.commentArr2[i].commenter = res.password;
         })

@@ -219,13 +219,13 @@ export class BattleMenuComponent implements OnInit {
       
       let randoFriendinArr: number = Math.floor(Math.random() * friends.length);
       
-      if (friends[randoFriendinArr].userIdTo == currentUser.userId)
+      if (friends[randoFriendinArr].userToFk == currentUser.userId)
       {
-        FriendId = friends[randoFriendinArr].userIdFrom;
+        FriendId = friends[randoFriendinArr].userFromFk;
       }
       else
       {
-        FriendId = friends[randoFriendinArr].userIdTo;
+        FriendId = friends[randoFriendinArr].userToFk;
       }
       this.user.Find(FriendId).subscribe((res) => {
         this.Opponent = res.password

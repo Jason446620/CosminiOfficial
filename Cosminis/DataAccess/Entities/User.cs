@@ -10,8 +10,8 @@ namespace DataAccess.Entities
             Comments = new HashSet<Comment>();
             Companions = new HashSet<Companion>();
             FoodInventories = new HashSet<FoodInventory>();
-            FriendUserFromFkNavigations = new HashSet<Friends>();
-            FriendUserToFkNavigations = new HashSet<Friends>();
+            FrienduserFromFkNavigations = new HashSet<Friends>();
+            FrienduserToFkNavigations = new HashSet<Friends>();
             Orders = new HashSet<Order>();
             Posts = new HashSet<Post>();
             PostFks = new HashSet<Post>();
@@ -29,15 +29,23 @@ namespace DataAccess.Entities
         public string AboutMe { get; set; } = null!;
         public int? ShowcaseCompanionFk { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Companion? ShowcaseCompanionFkNavigation { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Comment> Comments { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Companion> Companions { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FoodInventory> FoodInventories { get; set; }
-        public virtual ICollection<Friends> FriendUserFromFkNavigations { get; set; }
-        public virtual ICollection<Friends> FriendUserToFkNavigations { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual ICollection<Friends> FrienduserFromFkNavigations { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual ICollection<Friends> FrienduserToFkNavigations { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Post> Posts { get; set; }
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Post> PostFks { get; set; }
     }
 }

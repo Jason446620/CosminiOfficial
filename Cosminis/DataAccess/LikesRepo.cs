@@ -31,7 +31,7 @@ public class LikeRepo:ILikeIt
         Post LikedPost = _context.Posts.Find(PostID); //Fetch and link the post
         User User2Add2 = _context.Users.Find(LikedPost.UserFk); //Fetch and link the user for gold generation
         _context.Entry(LikingUser).Collection("PostIdFks").Load();
-        _context.Entry(LikedPost).Collection("UserIdFks").Load();
+        _context.Entry(LikedPost).Collection("UserIds").Load();
 
         if(LikingUser==null || LikedPost==null || User2Add2==null) //check if Fetching has been successful
         {
@@ -71,7 +71,7 @@ public class LikeRepo:ILikeIt
         User UnLikingUser = _context.Users.Find(UserID); //Fetch and link the user
         Post UnLikedPost = _context.Posts.Find(PostID); //Fetch and link the post
         User User2Add2 = _context.Users.Find(UnLikedPost.UserFk); //Fetch and link the user for gold generation
-        _context.Entry(UnLikedPost).Collection("UserIdFks").Load(); //This loads the FKs into the collection
+        _context.Entry(UnLikedPost).Collection("UserIds").Load(); //This loads the FKs into the collection
         _context.Entry(UnLikingUser).Collection("PostIdFks").Load(); //This loads the FKs into the collection
 
         if(UnLikingUser==null || UnLikedPost==null || User2Add2==null) //check if Fetching has been successful
@@ -109,7 +109,7 @@ public class LikeRepo:ILikeIt
         {
             throw new ResourceNotFound("The post does not exist");
         }
-        _context.Entry(CheckingPost).Collection("UserIdFks").Load(); //This loads the FKs into the collection
+        _context.Entry(CheckingPost).Collection("UserIds").Load(); //This loads the FKs into the collection
         return CheckingPost.UserFks.Count();
     }
 }

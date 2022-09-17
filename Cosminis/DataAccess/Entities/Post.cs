@@ -15,9 +15,11 @@ namespace DataAccess.Entities
         public int UserFk { get; set; }
         public string Content { get; set; } = null!;
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual User UserFkNavigation { get; set; } = null!;
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Comment> Comments { get; set; }
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<User> UserFks { get; set; }
     }
 }

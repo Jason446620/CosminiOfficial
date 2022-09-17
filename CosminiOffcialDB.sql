@@ -132,12 +132,12 @@ insert into Cosminis.foodStats (foodElement_fk, description, foodName, hungerRes
 
 insert into Cosminis.foodInventory (user_fk, foodStats_fk, foodCount) values (4, 1, -49999);
 
-insert into Cosminis.friends (userTo_fk, userFrom_fk, status) values (1, 4, 'Pending');
+insert into Cosminis.friends (userTo_Fk, userFrom_fk, status) values (5, 3, 'Accepted');
 
-select * from Cosminis.users;
+select * from Cosminis.companions;
 delete from Cosminis.users where userId = 1;
 
-update Cosminis.foodInventory set user_fk = 4, foodStats_fk = 1, foodCount = 10;
+update Cosminis.users set showcaseCompanion_Fk = 3 where userId = 4;
 
 drop table Cosminis.foodStats;
 
@@ -300,6 +300,16 @@ alter table Cosminis.companions add TimeSinceLastFed datetime not null default g
 alter table Cosminis.companions add TimeSinceLastPet datetime;
 
 alter table Cosminis.users drop column showcaseCompanion_fk;
+
+alter table Cosminis.companions add TimeSinceLastPet datetime;
+
+alter table Cosminis.companions drop column TimeSinceLastPet;
+alter table Cosminis.companions drop column TimeSinceLastFed;
+alter table Cosminis.companions drop column timeSinceLastChangedMood;
+alter table Cosminis.companions drop column timeSinceLastChangedHunger;
+alter table Cosminis.companions drop column companion_birthday;
+
+truncate table Cosminis.companions;
 
 alter table Cosminis.users drop constraint FK__users__showcaseC__625A9A57;
 

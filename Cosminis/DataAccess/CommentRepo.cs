@@ -41,7 +41,7 @@ public class CommentRepo : ICommentDAO
         {
             throw new PostsNotFound();
         }
-        User userInfo = _context.Users.Find(postInfo.UserFk); //gets the user to the associated userIDfk
+        User userInfo = _context.Users.Find(postInfo.UserFk); //gets the user to the associated UserId
 
         _resourceRepo.AddGold(userInfo, 3);
 
@@ -60,7 +60,7 @@ public class CommentRepo : ICommentDAO
         {
             throw new CommentsNotFound();
         }
-        User userInfo = _context.Users.Find(commentInfo.UserFk); //gets the user to the associated userIDfk
+        User userInfo = _context.Users.Find(commentInfo.UserFk); //gets the user to the associated UserId
 
             _resourceRepo.AddGold(userInfo, -3);
             _context.Comments.Remove(commentInfo); 

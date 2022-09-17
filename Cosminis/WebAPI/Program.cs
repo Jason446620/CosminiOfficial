@@ -189,9 +189,9 @@ app.MapPost("/companions/GenerateCompanion", (string username, CompanionControll
 	return CompControl.GenerateCompanion(username);
 });
 
-app.MapGet("/Friends/FriendsList", (int userIdToLookup, FriendsController FriendsControl) => 
+app.MapGet("/Friends/FriendsList", (int userTo_fkLookup, FriendsController FriendsControl) => 
 {
-	return FriendsControl.ViewAllFriends(userIdToLookup);
+	return FriendsControl.ViewAllFriends(userTo_fkLookup);
 });
 
 app.MapGet("/Friends/ViewAllRelationships", (FriendsController FriendsControl) => 

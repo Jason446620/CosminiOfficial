@@ -24,11 +24,11 @@ public class FriendsRepo : IFriendsDAO
         return _context.Friends.ToList();
     }
 
-    public List<Friends> ViewAllFriends(int userIdToLookup)             //More useful... gets ALLLL "friends" ('relationships' to be specific) of a particular user
+    public List<Friends> ViewAllFriends(int userTo_fkLookup)             //More useful... gets ALLLL "friends" ('relationships' to be specific) of a particular user
     {
         try
         {
-        User userToLookup = _context.Users.Find(userIdToLookup);
+        User userToLookup = _context.Users.Find(userTo_fkLookup);
 
         if(userToLookup == null)
         {
@@ -37,7 +37,7 @@ public class FriendsRepo : IFriendsDAO
 
         IEnumerable<Friends> friendsQuery =                             //This will return friends EVEN IF THEY ARE REMOVED OR BLOCKED BTW... one for only 'accepted' friends below.
             (from Friends in _context.Friends
-            where (Friends.UserToFk == userToLookup.UserId) || (Friends.UserFromFk == userToLookup.UserId)
+            where (Friends.userToFk == userToLookup.UserId) || (Friends.userFromFk == userToLookup.UserId)
             select Friends).ToList();
 
         if(friendsQuery == null)                                        //Throws an exception if the user is unpopular.
@@ -197,7 +197,7 @@ public class FriendsRepo : IFriendsDAO
         {
             foreach(Friends friendSearch in quieriedUsersList)
             {
-                if(friendSearch.UserIdFrom == friend2BeAdded.UserId || friendSearch.UserIdTo == friend2BeAdded.UserId)
+                if(friendSearch.userFrom_fk == friend2BeAdded.UserId || friendSearch.userTo_fk == friend2BeAdded.UserId)
                 {
                     Friends friendReturn = ViewRelationShipsByStatus(status);
                     return friendReturn;
@@ -383,8 +383,8 @@ public class FriendsRepo : IFriendsDAO
         {
             Friends newRelationship = new Friends
             {
-                UserFromFk = (int)toBeAccepted.UserId,
-                UserToFk = (int)requestReceiver.UserId,
+                userFromFk = (int)toBeAccepted.UserId,
+                userToFk = (int)requestReceiver.UserId,
                 Status = "Pending"
             };
 
@@ -441,8 +441,8 @@ public class FriendsRepo : IFriendsDAO
         {
             Friends newRelationship = new Friends
             {
-                UserFromFk = (int)toBeAccepted.UserId,
-                UserToFk = (int)requestReceiver.UserId,
+                userFromFk = (int)toBeAccepted.UserId,
+                userToFk = (int)requestReceiver.UserId,
                 Status = "Pending"
             };
 

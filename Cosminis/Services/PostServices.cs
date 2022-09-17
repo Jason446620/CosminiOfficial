@@ -70,10 +70,10 @@ public class PostServices
     		goldToAdd = 10;
     	}
 
-        /*if(!_resourceRepo.AddFood(shellUser, Weight))
+        if(!_resourceRepo.AddFood(shellUser, Weight))
         {
             throw new ResourceNotFound("Something had gone wrong when adding food, your companion boutta starve");
-        }*/
+        }
 
         try
         {
@@ -117,13 +117,13 @@ public class PostServices
             List<Post> friendsPosts = new List<Post>();
             for (int i = 0; i < relationships.Count; i++) //we are iterating through all possible relationships
             {
-                if (relationships[i].UserToFk == userInfo.UserId)
+                if (relationships[i].userToFk == userInfo.UserId)
                 {
-                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].UserFromFk)).ToList(); //this returns a list of posts for the users friend
+                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].userFromFk)).ToList(); //this returns a list of posts for the users friend
                 }
                 else
                 {
-                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].UserToFk)).ToList(); //this returns a list of posts for the users friend
+                    friendsPosts = friendsPosts.Concat(_postRepo.GetPostsByUserId(relationships[i].userToFk)).ToList(); //this returns a list of posts for the users friend
                     //Concat stiches the two Lists together
                 }
             }

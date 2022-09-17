@@ -11,6 +11,7 @@ namespace DataAccess.Entities
         public int Gems { get; set; }
         public DateTime TimeOrdered { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual User UserFkNavigation { get; set; } = null!;
     }
 }

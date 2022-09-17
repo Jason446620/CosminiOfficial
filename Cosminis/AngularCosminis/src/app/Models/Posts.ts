@@ -1,7 +1,7 @@
 export interface Posts
 {
     postId : number;
-    userIdFk : number;
+    userFk : number;
     content : string;
     posterNickname?:string;
 }

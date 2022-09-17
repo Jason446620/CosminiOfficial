@@ -270,28 +270,28 @@ namespace DataAccess.Entities
 
             modelBuilder.Entity<Friends>(entity =>
             {
-                entity.HasKey(e => new { e.UserFromFk, e.UserToFk })
+                entity.HasKey(e => new { e.userFromFk, e.userToFk })
                     .HasName("PK__friends__3E70DF12C2A8644C");
 
                 entity.ToTable("friends", "Cosminis");
 
-                entity.Property(e => e.UserFromFk).HasColumnName("userFrom_fk");
+                entity.Property(e => e.userFromFk).HasColumnName("userFrom_fk");
 
-                entity.Property(e => e.UserToFk).HasColumnName("userTo_fk");
+                entity.Property(e => e.userToFk).HasColumnName("userTo_fk");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasColumnName("status");
 
-                entity.HasOne(d => d.UserFromFkNavigation)
-                    .WithMany(p => p.FriendUserFromFkNavigations)
-                    .HasForeignKey(d => d.UserFromFk)
+                entity.HasOne(d => d.userFromFkNavigation)
+                    .WithMany(p => p.FrienduserFromFkNavigations)
+                    .HasForeignKey(d => d.userFromFk)
                     .HasConstraintName("FK__friends__userFro__43D61337");
 
-                entity.HasOne(d => d.UserToFkNavigation)
-                    .WithMany(p => p.FriendUserToFkNavigations)
-                    .HasForeignKey(d => d.UserToFk)
+                entity.HasOne(d => d.userToFkNavigation)
+                    .WithMany(p => p.FrienduserToFkNavigations)
+                    .HasForeignKey(d => d.userToFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__friends__userTo___44CA3770");
             });

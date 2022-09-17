@@ -75,7 +75,7 @@ export class PaymentComponent implements OnInit {
     bundleCost: 0
   }
 
-  orderArr : Order[] = [{orderId: 0, userIdFk: 0, cost: 0, timeOrdered: new Date()}]
+  orderArr : Order[] = [{orderId: 0, UserId: 0, cost: 0, timeOrdered: new Date()}]
 
   bundleArr : [Bundle, Bundle, Bundle, Bundle, Bundle, Bundle] = [this.bundle0, this.bundle1, this.bundle2, this.bundle3, this.bundle4, this.bundle5]
 
@@ -92,7 +92,7 @@ export class PaymentComponent implements OnInit {
   order : Order =
   {
     orderId : 0,
-    userIdFk : 0,
+    UserId : 0,
     cost : 0,
     timeOrdered : new Date()
   }
@@ -159,5 +159,4 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.ref.detectChanges();
   }
-  
 }

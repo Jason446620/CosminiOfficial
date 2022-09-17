@@ -1,7 +1,7 @@
 export interface Order
 {
     orderId : number;
-    userIdFk : number;
+    UserId : number;
     cost : number;
     timeOrdered : Date;
 }

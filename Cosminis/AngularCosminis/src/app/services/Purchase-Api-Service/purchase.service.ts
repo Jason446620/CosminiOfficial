@@ -14,22 +14,6 @@ export class PurchaseService {
 
   constructor(private http: HttpClient) { }
 
-  /*
-  cartItems: PurchaseTotals[] = [];
-
-  bundleType: Subject<string> = new Subject<string>();
-  bundleQuantity: Subject<number> = new Subject<number>();
-  subTotal: Subject<number> = new Subject<number>(); 
-  total: Subject<number> = new Subject<number>();
-  */
- 
-  /*
-  updateTotal() : void {
-    //this.purchaseName = this.DisplayTitle.get(this.enteredString);
-    this.subTotal = this.selectedCost;
-    this.purchaseTotal = this.bundleQty * this.subTotal;
-  }*/
-
   BuyGems(userId : number, Amount : number, cost : number) : Observable<Order> {
     return this.http.put(this.url + `Resources/PurchaseGems?userId=${userId}&Amount=${Amount}&cost=${cost}`, userId) as unknown as Observable<Order>;
   } 

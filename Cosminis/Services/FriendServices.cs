@@ -140,16 +140,16 @@ public class FriendServices
         }
     } 
 
-    public List<Friends> ViewAllFriends(int userIdToLookup)
+    public List<Friends> ViewAllFriends(int userTo_fkLookup)
     {
         try
         {
-            List<Friends> checkRelationship = _friendsRepo.ViewAllFriends(userIdToLookup);
+            List<Friends> checkRelationship = _friendsRepo.ViewAllFriends(userTo_fkLookup);
             if(checkRelationship == null)
             {
                 throw new RelationshipNotFound();
             }
-            return _friendsRepo.ViewAllFriends(userIdToLookup);
+            return _friendsRepo.ViewAllFriends(userTo_fkLookup);
         }
         catch (ResourceNotFound)
         {

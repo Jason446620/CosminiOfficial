@@ -60,7 +60,7 @@ export class CcformComponent implements OnInit {
   order : Order =
   {
     orderId : 0,
-    userIdFk : 0,
+    UserId : 0,
     cost : 0,
     timeOrdered : new Date()
   }
