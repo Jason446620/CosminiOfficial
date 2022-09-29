@@ -563,9 +563,10 @@ export class UserprofileComponent implements OnInit {
     let currentUser : Users = JSON.parse(stringUser);
     let currentUsername = currentUser.username;
     let currentUserId = currentUser.userId;
+
     this.updatePostFeed(currentUserId as number);
-    this.friendsPostFeed(currentUsername);
     this.showAllFriends(currentUsername);
     this.displayPendingFriends();
+    this.friendsPostFeed(currentUsername);
   }
 }
