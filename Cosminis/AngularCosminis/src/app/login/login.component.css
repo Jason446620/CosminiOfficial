@@ -18,3 +18,14 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.spinnerIMG
+{
+    display: block;
+    cursor: wait !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 10%;
+}
