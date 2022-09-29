@@ -231,13 +231,6 @@ export class UserprofileComponent implements OnInit {
     this.api.SubmitPostResourceGen(postsContent, postersId as number).subscribe((res) =>
     {
       this.updatePostFeed(currentUser.userId as number);
-      this.userApi.LoginOrReggi(currentUser).subscribe((res) =>
-      {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.CheckFood();
-        //Swal.fire("Your post has been submitted, please refresh to see your post below.");
-      })
     })
   }
 
@@ -533,13 +526,7 @@ export class UserprofileComponent implements OnInit {
     
     this.commentApi.submitComment(commentersId as number, postId, postsContent).subscribe((res) =>
     {
-      this.userApi.LoginOrReggi(currentUser).subscribe((res) =>
-      {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.CheckFood();
-        Swal.fire("Comment submitted!");
-      })
+      Swal.fire("Comment submitted!");
       console.log(res);
     })
   }

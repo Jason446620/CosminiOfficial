@@ -32,14 +32,8 @@ export class SelectBattleComponent implements OnInit {
     this.router.navigateByUrl('/Battle/Menu');
   }
 
-  ngOnInit(): void {
-  let stringUser: string = sessionStorage.getItem('currentUser') as string;
-  let currentUser: Users = JSON.parse(stringUser);
-
-  this.UserService.LoginOrReggi(currentUser).subscribe((res) => {
-    currentUser = res;
-    window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-  });
+  ngOnInit(): void 
+  {
   }
 
 }

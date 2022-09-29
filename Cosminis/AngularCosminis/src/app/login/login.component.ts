@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { FoodElement } from '../Models/FoodInventory';
 import { Users } from '../Models/User';
 import { ResourceApiServicesService } from '../services/Resource-Api-Service/resource-api-service.service';
-import { Cosminis } from '../Models/Cosminis';
 
 
 @Component({
