@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { InteractionService } from '../services/Interaction-Api-Service/interaction.service';
-import { ComsinisApiServiceService } from '../services/Comsini-api-service/comsinis-api-service.service';
-import { FoodElement } from '../Models/FoodInventory';
+import { UserApiServicesService } from '../services/User-Api-Service/user-api-services.service';
 import { Router } from '@angular/router';
 import { Users } from '../Models/User';
 
@@ -14,10 +13,7 @@ import { Users } from '../Models/User';
 
 export class NavbarComponent implements OnInit {
 
-  constructor(public auth0: AuthService, private router: Router, private interApi:InteractionService, private comsiniApi:ComsinisApiServiceService) { }
-  foodDisplay : FoodElement[] = []
-
-  foodQty : [number, number, number, number, number, number] = [0, 0, 0, 0, 0, 0];
+  constructor(public auth0: AuthService, private router: Router, private interApi:InteractionService, private userApi:UserApiServicesService) { }
 
   currentUsername : string ="";
   currentUsernickname : string ="";
@@ -43,14 +39,8 @@ export class NavbarComponent implements OnInit {
     
   ngOnInit(): void 
   {
-    setInterval(()=>{
-      let stringUser : string   = sessionStorage.getItem('currentUser') as string;
-      let currentUser : Users = JSON.parse(stringUser);
-      this.comsiniApi.HatchEgg(currentUser.username).subscribe();
-    }, 3600000);
     setInterval(() => 
     {
-      
       let stringUser : string = sessionStorage.getItem('currentUser') as string;
       let currentUser : Users = JSON.parse(stringUser);
 
@@ -64,6 +54,11 @@ export class NavbarComponent implements OnInit {
         window.sessionStorage.setItem('DisplayCompanionHunger', JSON.stringify(res.hunger));
       })
     } ,60000);
+
+    setInterval(()=>
+    {
+      this.userApi.UpdateNavBar();
+    }, 500)
   }
 
   needyCompanion():void

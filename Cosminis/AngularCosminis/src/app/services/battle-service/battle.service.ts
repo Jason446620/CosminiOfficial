@@ -102,13 +102,6 @@ export class BattleService {
 
     this.resourceAPI.AddGold(UserId,NewGoldPayout).subscribe((res)=>
     {
-      let stringUser: string = sessionStorage.getItem('currentUser') as string;
-      let currentUser: Users = JSON.parse(stringUser);
-
-      this.UserService.LoginOrReggi(currentUser).subscribe((res) => {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-      });
       if (NewGoldPayout == 0)
       {
         Swal.fire("You've lost! Your payout is " + NewGoldPayout, "Your payout have a multiplier of:" + Scalar);

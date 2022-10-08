@@ -89,12 +89,7 @@ export class CcformComponent implements OnInit {
     this.purchaseApi.BuyGems(currentUser.userId, amount, cost).subscribe((res) =>
     {
       this.order = res;
-      this.userApi.LoginOrReggi(currentUser).subscribe((res) =>
-      {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-        Swal.fire("Congratulations, you just spent a lot of REAL money");
-      })
+      Swal.fire("Congratulations, you just spent a lot of REAL money");
     })
   }
 }

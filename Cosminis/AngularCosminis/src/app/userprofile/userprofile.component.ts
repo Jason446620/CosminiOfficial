@@ -185,38 +185,6 @@ export class UserprofileComponent implements OnInit {
     })
   }
 
-  CheckFood():boolean
-  {
-    let stringUser : string = sessionStorage.getItem('currentUser') as string;
-
-    let currentUser : Users = JSON.parse(stringUser);
-    this.resourceApi.CheckFood(currentUser.userId as number).subscribe((res) =>
-    {
-      this.foodDisplay= res;
-      if(this.foodDisplay.length>0)
-      {
-        window.sessionStorage.setItem('SpicyFoodCount', this.foodDisplay[0].foodCount as unknown as string);
-        window.sessionStorage.setItem('ColdFoodCount', this.foodDisplay[1].foodCount as unknown as string);
-        window.sessionStorage.setItem('LeafyFoodCount', this.foodDisplay[2].foodCount as unknown as string);
-        window.sessionStorage.setItem('FluffyFoodCount', this.foodDisplay[3].foodCount as unknown as string);
-        window.sessionStorage.setItem('BlessedFoodCount', this.foodDisplay[4].foodCount as unknown as string);
-        window.sessionStorage.setItem('CursedFoodCount', this.foodDisplay[5].foodCount as unknown as string);
-        return true;
-      }
-      else
-      {
-        window.sessionStorage.setItem('SpicyFoodCount', '0');
-        window.sessionStorage.setItem('ColdFoodCount', '0');
-        window.sessionStorage.setItem('LeafyFoodCount', '0');
-        window.sessionStorage.setItem('FluffyFoodCount', '0');
-        window.sessionStorage.setItem('BlessedFoodCount', '0');
-        window.sessionStorage.setItem('CursedFoodCount', '0');
-        return false;
-      }
-    });
-    return false;
-  }
-
   loggedIn: boolean = false;
 
   submitPost() : void 
@@ -231,13 +199,6 @@ export class UserprofileComponent implements OnInit {
     this.api.SubmitPostResourceGen(postsContent, postersId as number).subscribe((res) =>
     {
       this.updatePostFeed(currentUser.userId as number);
-      this.userApi.LoginOrReggi(currentUser).subscribe((res) =>
-      {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.CheckFood();
-        //Swal.fire("Your post has been submitted, please refresh to see your post below.");
-      })
     })
   }
 
@@ -533,13 +494,7 @@ export class UserprofileComponent implements OnInit {
     
     this.commentApi.submitComment(commentersId as number, postId, postsContent).subscribe((res) =>
     {
-      this.userApi.LoginOrReggi(currentUser).subscribe((res) =>
-      {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.CheckFood();
-        Swal.fire("Comment submitted!");
-      })
+      Swal.fire("Comment submitted!");
       console.log(res);
     })
   }
@@ -608,9 +563,10 @@ export class UserprofileComponent implements OnInit {
     let currentUser : Users = JSON.parse(stringUser);
     let currentUsername = currentUser.username;
     let currentUserId = currentUser.userId;
+
     this.updatePostFeed(currentUserId as number);
-    this.friendsPostFeed(currentUsername);
     this.showAllFriends(currentUsername);
     this.displayPendingFriends();
+    this.friendsPostFeed(currentUsername);
   }
 }

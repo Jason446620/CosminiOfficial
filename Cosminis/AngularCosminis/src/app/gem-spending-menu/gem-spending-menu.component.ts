@@ -45,12 +45,7 @@ export class GemSpendingMenuComponent implements OnInit {
       window.sessionStorage.setItem('FluffyFoodCount', this.foodInvInstance[3].foodCount as unknown as string);
       window.sessionStorage.setItem('BlessedFoodCount', this.foodInvInstance[4].foodCount as unknown as string);
       window.sessionStorage.setItem('CursedFoodCount', this.foodInvInstance[5].foodCount as unknown as string);
-      this.userApi.LoginOrReggi(currentUser).subscribe((res) =>
-      {
-        currentUser = res;
-        window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-        Swal.fire("Congratulations, you just spent a lot of Gems");
-      })
+      Swal.fire("Congratulations, you just spent a lot of Gems");
     })
   }
 
