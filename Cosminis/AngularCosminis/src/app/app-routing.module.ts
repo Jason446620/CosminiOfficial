@@ -16,11 +16,13 @@ import { BattleMenuComponent } from './battle-menu/battle-menu.component';
 const routes: Routes = [
   { 
     path: 'homepage', 
-    component:HomepageComponent
-  },  // you must add your component here
+    component:HomepageComponent,
+    data: {animation : 'isHomepage'}
+  },  
   {
     path: 'userprofile', 
-    component: UserprofileComponent
+    component: UserprofileComponent,
+    data: {animation : 'isUserProfile'}
   },
   {
     path: 'login', 
