@@ -13,3 +13,8 @@ h1
     color:white;
     padding:15px;
 }
+
+main
+{
+    position:relative;
+}

@@ -22,6 +22,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { CcformComponent } from '././payment/ccform/ccform.component';
 import { SelectBattleComponent } from './select-battle/select-battle.component'; 
 import { BattleMenuComponent } from './battle-menu/battle-menu.component'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { BattleMenuComponent } from './battle-menu/battle-menu.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
     AuthModule.forRoot
     ({
       ... env.auth,
