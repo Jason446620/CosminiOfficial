@@ -5,11 +5,11 @@
 export const environment = 
 {
   production: false, 
-  api: 'https://comsinithethird.azurewebsites.net/',
+  api: 'https://cosminis-fge8geh4gjfdf4ca.eastus-01.azurewebsites.net/',
   auth:
   {
-    domain: "dev-11iexw1h.us.auth0.com",
-    clientId: "CqzmrWNCOpXTtDmCCahcjq7IO9doIAbh",
+    domain: "dev-lj8y5w8u.us.auth0.com",
+    clientId: "Lq2lP0EYqPCAqzFtXLYdphFwobokBBw0",
     redirectUri: window.location.origin
   }
 };
