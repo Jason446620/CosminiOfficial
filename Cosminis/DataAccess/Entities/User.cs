@@ -38,9 +38,9 @@ namespace DataAccess.Entities
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FoodInventory> FoodInventories { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual ICollection<Friend> FriendUserFromFkNavigations { get; set; }
+        public virtual ICollection<Friends> FriendUserFromFkNavigations { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual ICollection<Friend> FriendUserToFkNavigations { get; set; }
+        public virtual ICollection<Friends> FriendUserToFkNavigations { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
