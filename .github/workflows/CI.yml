@@ -56,15 +56,6 @@ jobs:
     # Make sure all tests pass
     - name: Test
       run: dotnet test Cosminis/Tests --verbosity normal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-      
-    - name: Print DOTNET_ROOT
-      run: echo $DOTNET_ROOT
-
-    - name: Verify myapp directory
-      run: |
-        ls -la $DOTNET_ROOT/myapp
-        echo "Contents of $DOTNET_ROOT/myapp:"
-        ls -R $DOTNET_ROOT/myapp
     
     - name: Build and analyze
       env:
