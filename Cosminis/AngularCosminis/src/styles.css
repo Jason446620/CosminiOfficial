@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-.GlobalBody
-{
-    background: url("https://cdn.discordapp.com/attachments/1004455177165754508/1008479938598404177/wallpaperflare.com_wallpaper.jpg");
-    background-size: cover;
-    margin: 0;
-    height:100vh;
+
+.GlobalBody {
+  background: url("https://drive.google.com/file/d/15-iz88Lj0WupjAjc2uyJdtaeLPvg_QAD/view?usp=sharing");
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
 }
 
 h1
@@ -18,3 +18,6 @@ main
 {
     position:relative;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
