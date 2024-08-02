@@ -270,7 +270,7 @@ namespace DataAccess.Entities
 
             modelBuilder.Entity<Friends>(entity =>
             {
-                entity.HasKey(e => new { e.UserFromFk, e.UserToFk })
+                entity.HasKey(e => new { e.userFromFk, e.userToFk })
                     .HasName("PK__friends__3E70DF1272FA2F32");
 
                 entity.ToTable("friends", "Cosminis");
