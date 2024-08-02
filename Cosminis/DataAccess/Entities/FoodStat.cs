@@ -16,7 +16,9 @@ namespace DataAccess.Entities
         public string FoodName { get; set; } = null!;
         public int HungerRestore { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual FoodElement FoodElementFkNavigation { get; set; } = null!;
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FoodInventory> FoodInventories { get; set; }
     }
 }

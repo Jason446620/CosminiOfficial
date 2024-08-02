@@ -8,10 +8,10 @@ namespace DataAccess;
  
 public class PostRepo : IPostDAO
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
     private readonly IUserDAO _userRepo;
 
-    public PostRepo(CosminisContext context, IUserDAO userRepo)
+    public PostRepo(CosminisOfficialDBContext context, IUserDAO userRepo)
     {
         _context = context;
         _userRepo = userRepo;

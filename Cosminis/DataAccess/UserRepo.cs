@@ -9,9 +9,9 @@ namespace DataAccess;
  
 public class UserRepo : IUserDAO
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
 
-    public UserRepo(CosminisContext context)
+    public UserRepo(CosminisOfficialDBContext context)
     {
         _context = context;
     }

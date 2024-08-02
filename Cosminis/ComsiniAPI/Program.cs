@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddDbContext<CosminisContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
 builder.Services.AddScoped<IUserDAO, UserRepo>();

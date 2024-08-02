@@ -16,6 +16,7 @@ namespace DataAccess.Entities
         public int BaseDex { get; set; }
         public int BaseInt { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Species> Species { get; set; }
     }
 }

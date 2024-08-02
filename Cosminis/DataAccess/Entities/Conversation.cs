@@ -10,6 +10,7 @@ namespace DataAccess.Entities
         public int Quality { get; set; }
         public string Message { get; set; } = null!;
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Species SpeciesFkNavigation { get; set; } = null!;
     }
 }

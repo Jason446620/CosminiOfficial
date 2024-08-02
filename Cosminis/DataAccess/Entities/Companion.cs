@@ -17,11 +17,11 @@ namespace DataAccess.Entities
         public string Nickname { get; set; } = null!;
         public int Hunger { get; set; }
         public int Mood { get; set; }
-        public DateTime TimeSinceLastChangedMood { get; set; } = DateTime.Now;
-        public DateTime TimeSinceLastChangedHunger { get; set; } = DateTime.Now;
-        public DateTime TimeSinceLastPet { get; set; } = DateTime.Now;
-        public DateTime CompanionBirthday { get; set; } = DateTime.Now;
-        public DateTime TimeSinceLastFed { get; set; } = DateTime.Now;
+        public DateTime TimeSinceLastChangedMood { get; set; }
+        public DateTime TimeSinceLastChangedHunger { get; set; }
+        public DateTime TimeSinceLastPet { get; set; }
+        public DateTime CompanionBirthday { get; set; }
+        public DateTime TimeSinceLastFed { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual EmotionChart EmotionNavigation { get; set; } = null!;

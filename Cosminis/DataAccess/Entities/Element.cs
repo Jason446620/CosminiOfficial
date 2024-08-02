@@ -14,7 +14,9 @@ namespace DataAccess.Entities
         public int ElementId { get; set; }
         public string ElementType { get; set; } = null!;
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Species> SpeciesElementFkNavigations { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Species> SpeciesOpposingEleNavigations { get; set; }
     }
 }

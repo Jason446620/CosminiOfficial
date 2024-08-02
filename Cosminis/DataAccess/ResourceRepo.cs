@@ -6,9 +6,9 @@ namespace DataAccess;
 
 public class ResourceRepo : IResourceGen
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
 
-    public ResourceRepo (CosminisContext context)
+    public ResourceRepo (CosminisOfficialDBContext context)
     {
         _context = context;
     }

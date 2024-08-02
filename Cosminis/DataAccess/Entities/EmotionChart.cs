@@ -14,6 +14,7 @@ namespace DataAccess.Entities
         public int Quality { get; set; }
         public string Emotion { get; set; } = null!;
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Companion> Companions { get; set; }
     }
 }
