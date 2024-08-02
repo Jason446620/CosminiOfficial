@@ -8,10 +8,10 @@ namespace DataAccess;
  
 public class CommentRepo : ICommentDAO
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
     private readonly IResourceGen _resourceRepo;
 
-    public CommentRepo(CosminisContext context, IResourceGen resourceRepo)
+    public CommentRepo(CosminisOfficialDBContext context, IResourceGen resourceRepo)
     {
         _context = context;
         _resourceRepo = resourceRepo;

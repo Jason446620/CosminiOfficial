@@ -10,10 +10,10 @@ namespace DataAccess;
  
 public class FriendsRepo : IFriendsDAO
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
     private readonly IUserDAO _userRepo;
 
-    public FriendsRepo(CosminisContext context, IUserDAO userRepo)
+    public FriendsRepo(CosminisOfficialDBContext context, IUserDAO userRepo)
     {
         _context = context;
         _userRepo = userRepo;

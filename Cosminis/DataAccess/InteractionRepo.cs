@@ -9,12 +9,12 @@ namespace DataAccess;
 
 public class InteractionRepo : Interactions
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
     private readonly IUserDAO _userRepo;
     private readonly ICompanionDAO _compRepo;
     private readonly IResourceGen _ResourceRepo;
     
-    public InteractionRepo(CosminisContext context, IUserDAO userRepo, ICompanionDAO compRepo, IResourceGen ResourceRepo)
+    public InteractionRepo(CosminisOfficialDBContext context, IUserDAO userRepo, ICompanionDAO compRepo, IResourceGen ResourceRepo)
     {
         _context = context;
         _userRepo = userRepo;

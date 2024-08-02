@@ -8,10 +8,10 @@ namespace DataAccess;
 
 public class LikeRepo:ILikeIt
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
     private readonly IResourceGen _ResourceRepo;
 
-    public LikeRepo(CosminisContext context, IResourceGen ResourceRepo)
+    public LikeRepo(CosminisOfficialDBContext context, IResourceGen ResourceRepo)
     {
         _context = context;
         _ResourceRepo = ResourceRepo;

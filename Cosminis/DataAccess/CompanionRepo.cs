@@ -10,9 +10,9 @@ namespace DataAccess;
  
 public class CompanionRepo : ICompanionDAO
 {
-    private readonly CosminisContext _context;
+    private readonly CosminisOfficialDBContext _context;
 
-    public CompanionRepo(CosminisContext context)
+    public CompanionRepo(CosminisOfficialDBContext context)
     {
         _context = context;
     }
