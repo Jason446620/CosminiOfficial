@@ -10,8 +10,8 @@ namespace DataAccess.Entities
             Comments = new HashSet<Comment>();
             Companions = new HashSet<Companion>();
             FoodInventories = new HashSet<FoodInventory>();
-            FriendUserFromFkNavigations = new HashSet<Friend>();
-            FriendUserToFkNavigations = new HashSet<Friend>();
+            FriendUserFromFkNavigations = new HashSet<Friends>();
+            FriendUserToFkNavigations = new HashSet<Friends>();
             Orders = new HashSet<Order>();
             Posts = new HashSet<Post>();
             PostFks = new HashSet<Post>();
