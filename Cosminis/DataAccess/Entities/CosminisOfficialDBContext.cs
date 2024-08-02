@@ -275,23 +275,23 @@ namespace DataAccess.Entities
 
                 entity.ToTable("friends", "Cosminis");
 
-                entity.Property(e => e.UserFromFk).HasColumnName("userFrom_fk");
+                entity.Property(e => e.userFromFk).HasColumnName("userFrom_fk");
 
-                entity.Property(e => e.UserToFk).HasColumnName("userTo_fk");
+                entity.Property(e => e.userToFk).HasColumnName("userTo_fk");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasColumnName("status");
 
-                entity.HasOne(d => d.UserFromFkNavigation)
+                entity.HasOne(d => d.userFromFkNavigation)
                     .WithMany(p => p.FriendUserFromFkNavigations)
-                    .HasForeignKey(d => d.UserFromFk)
+                    .HasForeignKey(d => d.userFromFk)
                     .HasConstraintName("FK__friends__userFro__2FCF1A8A");
 
-                entity.HasOne(d => d.UserToFkNavigation)
+                entity.HasOne(d => d.userToFkNavigation)
                     .WithMany(p => p.FriendUserToFkNavigations)
-                    .HasForeignKey(d => d.UserToFk)
+                    .HasForeignKey(d => d.userToFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__friends__userTo___30C33EC3");
             });
