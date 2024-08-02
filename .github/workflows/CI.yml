@@ -65,6 +65,6 @@ jobs:
       shell: powershell
       run:  |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"CosminiInc_CosminiOfficial" /o:"cosminiinc" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        dotnet build --no-restore Cosminis/ComsiniAPI
+        dotnet build --no-restore Cosminis/ComsiniAPI/ComsiniAPI.csproj
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
