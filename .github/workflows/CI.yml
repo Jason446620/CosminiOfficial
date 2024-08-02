@@ -56,8 +56,7 @@ jobs:
     # Make sure all tests pass
     - name: Test
       run: dotnet test Cosminis/Tests --verbosity normal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-      
-        
+    
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -66,6 +65,6 @@ jobs:
       shell: powershell
       run:  |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"CosminiInc_CosminiOfficial" /o:"cosminiinc" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+        dotnet build --no-restore Cosminis/ComsiniAPI/ComsiniAPI.csproj
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-        dotnet build --no-restore Cosminis/ComsiniAPI
 
