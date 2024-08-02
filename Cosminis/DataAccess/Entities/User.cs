@@ -10,8 +10,8 @@ namespace DataAccess.Entities
             Comments = new HashSet<Comment>();
             Companions = new HashSet<Companion>();
             FoodInventories = new HashSet<FoodInventory>();
-            FrienduserFromFkNavigations = new HashSet<Friends>();
-            FrienduserToFkNavigations = new HashSet<Friends>();
+            FriendUserFromFkNavigations = new HashSet<Friend>();
+            FriendUserToFkNavigations = new HashSet<Friend>();
             Orders = new HashSet<Order>();
             Posts = new HashSet<Post>();
             PostFks = new HashSet<Post>();
@@ -38,13 +38,14 @@ namespace DataAccess.Entities
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FoodInventory> FoodInventories { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual ICollection<Friends> FrienduserFromFkNavigations { get; set; }
+        public virtual ICollection<Friend> FriendUserFromFkNavigations { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
-        public virtual ICollection<Friends> FrienduserToFkNavigations { get; set; }
+        public virtual ICollection<Friend> FriendUserToFkNavigations { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Post> Posts { get; set; }
+
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Post> PostFks { get; set; }
     }

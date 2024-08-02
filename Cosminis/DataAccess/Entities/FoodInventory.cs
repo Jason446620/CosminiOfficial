@@ -9,7 +9,9 @@ namespace DataAccess.Entities
         public int FoodStatsFk { get; set; }
         public int FoodCount { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual FoodStat FoodStatsFkNavigation { get; set; } = null!;
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual User UserFkNavigation { get; set; } = null!;
     }
 }

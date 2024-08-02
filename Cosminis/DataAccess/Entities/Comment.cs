@@ -10,7 +10,9 @@ namespace DataAccess.Entities
         public int PostFk { get; set; }
         public string Content { get; set; } = null!;
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Post PostFkNavigation { get; set; } = null!;
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual User UserFkNavigation { get; set; } = null!;
     }
 }
