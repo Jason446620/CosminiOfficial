@@ -20,7 +20,10 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CosminiDBConnectionString")));
+builder.Configuration.AddUserSecrets<Program>();
+var cs = builder.Configuration.GetConnectionString("Usr");
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(cs));
+
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
 builder.Services.AddScoped<IUserDAO, UserRepo>();
@@ -40,7 +43,6 @@ builder.Services.AddScoped<LikeServices>();
 builder.Services.AddScoped<InteractionService>();
 builder.Services.AddScoped<LotteryService>();
 builder.Services.AddScoped<BattleServices>();
-
 
 builder.Services.AddControllers();
 

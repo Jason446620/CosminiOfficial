@@ -141,7 +141,7 @@ update Cosminis.users set showcaseCompanion_Fk = 3 where userId = 4;
 
 drop table Cosminis.foodStats;
 
---Entries for EmotionChart--
+--Entries for EmotionChart--done
 insert into Cosminis.emotionChart (quality, emotion) values (0, 'Hopeless');
 insert into Cosminis.emotionChart (quality, emotion) values (1, 'Fear');
 insert into Cosminis.emotionChart (quality, emotion) values (2, 'Hostile');
@@ -153,7 +153,7 @@ insert into Cosminis.emotionChart (quality, emotion) values (7, 'Happy');
 insert into Cosminis.emotionChart (quality, emotion) values (8, 'Excited');
 insert into Cosminis.emotionChart (quality, emotion) values (9, 'Blissful');
 insert into Cosminis.emotionChart (quality, emotion) values (10, 'Hopeful');
---Entries for POSTS--
+--Entries for POSTS--done
 
 insert into Cosminis.posts (user_fk, content) values (1, 'Hey everyone, this is my first post!');
 
@@ -163,7 +163,7 @@ insert into Cosminis.posts (user_fk, content) values (4, 'I just LOVE the compan
 
 insert into Cosminis.posts (user_fk, content) values (5, 'Hey yall, its me again Jimmy.  I really want to get all the companions this site has to offer.  The graphics are obviously super cool and all my friends wanna register on this website too!');
 
---Entries for FRIENDS--
+--Entries for FRIENDS--can only do less than 5
 
 insert into Cosminis.friends (userFrom_fk, userTo_fk, status) values (7, 2, 'Accepted');
 
@@ -175,7 +175,7 @@ insert into Cosminis.friends (userFrom_fk, userTo_fk, status) values (10, 1, 'Ac
 
 insert into Cosminis.friends (userFrom_fk, userTo_fk, status) values (10, 7, 'Accepted');
 
---Entries for LIKES--
+--Entries for LIKES--done
 
 insert into Cosminis.likes (user_fk, post_fk) values (1, 4);
 
@@ -183,11 +183,11 @@ insert into Cosminis.likes (user_fk, post_fk) values (2, 4);
 
 insert into Cosminis.likes (user_fk, post_fk) values (3, 2);
 
---Entries for FOODINVENTORY--
+--Entries for FOODINVENTORY--done
 
 insert into Cosminis.foodInventory (user_fk, foodStats_fk, foodCount) values (2, 1, 10);
 
---Entries for CLASS--
+--Entries for CLASS--done
 
 insert into Cosminis.class (className, BaseStr, BaseDex, BaseInt) values ('Witch', 5, 10, 15);
 
@@ -197,7 +197,7 @@ insert into Cosminis.class (className, BaseStr, BaseDex, BaseInt) values ('Gladi
 
 insert into Cosminis.class (className, BaseStr, BaseDex, BaseInt) values ('Generalist', 10, 10, 10);
 
---Entries for FOODELEMENT--
+--Entries for FOODELEMENT--done
 
 insert into Cosminis.foodElement (foodElement) values ('Spicy');
 
@@ -213,7 +213,7 @@ insert into Cosminis.foodElement (foodElement) values ('Cursed');
 
 insert into Cosminis.foodElement (foodElement) values ('Generic');
 
---Entries for Elements--
+--Entries for Elements--done
 
 insert into Cosminis.elements (elementType) values ('Volcanic');
 
@@ -227,7 +227,7 @@ insert into Cosminis.elements (elementType) values ('Light');
 
 insert into Cosminis.elements (elementType) values ('Dark');
 
---Entries for FOODSTATS--
+--Entries for FOODSTATS--done
 
 insert into Cosminis.foodStats (foodElement_fk, description, foodName, hungerRestore) values (1,'Better have [soy] milk!', 'Chili', 50);
 
@@ -241,7 +241,7 @@ insert into Cosminis.foodStats (foodElement_fk, description, foodName, hungerRes
 
 insert into Cosminis.foodStats (foodElement_fk, description, foodName, hungerRestore) values (6,'Wear floaties!', 'Devil fruit', 50);		
 
---Entries for USERS--
+--Entries for USERS--done
 
 insert into Cosminis.users (username, password, goldCount, eggCount, account_age, eggTimer) values ('WaterMelon', 'F1re', 2, 2, GETDATE(), GETDATE());
 
@@ -256,15 +256,15 @@ insert into Cosminis.users (username, password, goldCount, eggCount) values ('Ji
 --Entries for COMPANIONS--
 
 
-insert into Cosminis.species (user_fk, species_fk, nickname, mood, hunger) values (3, 1, 'Supernovog!', 'Happy', 50);
+insert into Cosminis.companions (user_fk, species_fk, nickname, mood, hunger) values (3, 1, 'Supernovog!', 7, 50);
 
-insert into Cosminis.species (user_fk, species_fk, nickname, mood, hunger) values (1, 4, 'Seth', 'Chill', 69);
+insert into Cosminis.companions (user_fk, species_fk, nickname, mood, hunger) values (1, 4, 'Seth', 6, 69);
 
-insert into Cosminis.species (user_fk, species_fk, nickname, mood, hunger) values (6, 6, 'Asmodeus', 'Angry', 6);
+insert into Cosminis.companions (user_fk, species_fk, nickname, mood, hunger) values (5, 6, 'Asmodeus', 2, 6);
 
-insert into Cosminis.species (user_fk, species_fk, nickname, mood, hunger) values (4, 3, 'Test', 'Chill', 100);
+insert into Cosminis.companions (user_fk, species_fk, nickname, mood, hunger) values (4, 3, 'Test', 8, 100);
 
---Entries for SPECIES--
+--Entries for SPECIES--done
 
 insert into Cosminis.species (element_fk, opposingEle, foodElement_fk, oppFoodElement_fk, class_fk, speciesName, description) values (1, 2, 1, 2, 1, 'Infernog', 'Blasts off at the speed of light!');
 
@@ -293,7 +293,7 @@ alter table Cosminis.users add showcaseCompanion_fk int foreign key references C
 
 alter table sublanguages.users drop constraint likes_cilantro;
 
---These are for our changes right now on 8/13
+--These are for our changes right now on 8/13 done
 
 alter table Cosminis.companions add TimeSinceLastFed datetime not null default getdate();
 
@@ -308,6 +308,10 @@ alter table Cosminis.companions drop column TimeSinceLastFed;
 alter table Cosminis.companions drop column timeSinceLastChangedMood;
 alter table Cosminis.companions drop column timeSinceLastChangedHunger;
 alter table Cosminis.companions drop column companion_birthday;
+
+SELECT speciesId FROM Cosminis.species;--test
+DELETE FROM Cosminis.species;
+DBCC CHECKIDENT ('Cosminis.species', RESEED, 0);
 
 truncate table Cosminis.companions;
 
