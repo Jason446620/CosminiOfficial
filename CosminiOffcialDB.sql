@@ -123,7 +123,7 @@ create table Cosminis.emotionChart(
 
 /*COMMAND TO SCAFFOLD
  * 
- * dotnet ef dbcontext scaffold "Server=tcp:;Initial Catalog=Cosminis;Persist Security Info=False;User ID=;Password=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer --startup-project ../ComsiniAPI --force --output-dir Entities --no-onconfiguring
+ * dotnet ef dbcontext scaffold "Server=tcp:cosminis.database.windows.net,1433;Initial Catalog=Cosminis;Persist Security Info=False;User ID=cosmega;Password=qaw4avp4ABY@pjn1mhu;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer --startup-project ../ComsiniAPI --force --output-dir Entities --no-onconfiguring
  * 
  * ^Force output dir part might not have the right syntax...
  * 

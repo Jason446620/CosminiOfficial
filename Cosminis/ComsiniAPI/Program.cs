@@ -20,19 +20,9 @@ builder.Services.AddCors(options =>
         });
 });
 
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
-
-builder.Configuration.AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
 builder.Configuration.AddUserSecrets<Program>();
-builder.Configuration.AddEnvironmentVariables();
-
-if (environment == "Production")
-{
-    var cs = builder.Configuration.GetConnectionString("Usr");
-    builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(cs));
-}
-else
-    builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer("CosminiDBConnectionString"));
+var cs = builder.Configuration.GetConnectionString("Usr");
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(cs));
 
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
