@@ -26,13 +26,13 @@ builder.Configuration.AddJsonFile($"appsettings.{environment}.json", optional: t
 builder.Configuration.AddUserSecrets<Program>();
 builder.Configuration.AddEnvironmentVariables();
 
-if (environment == "Production")
-{
-    var cs = builder.Configuration.GetConnectionString("Usr");
-    builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(cs));
-}
+string connectionString;
+if (builder.Environment.IsProduction())
+    connectionString = builder.Configuration.GetConnectionString("Usr");
 else
-    builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer("CosminiDBConnectionString"));
+    connectionString = builder.Configuration.GetConnectionString("CosminiDBConnectionString");
+
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
