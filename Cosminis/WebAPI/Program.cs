@@ -22,7 +22,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Configuration.AddUserSecrets<Program>();
-builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CosminiDBConnectionString")));
+var cs = builder.Configuration.GetConnectionString("Usr");
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(cs));
 
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
