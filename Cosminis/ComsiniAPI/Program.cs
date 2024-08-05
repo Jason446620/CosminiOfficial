@@ -21,8 +21,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Configuration.AddEnvironmentVariables();
-var connectionString = builder.Configuration["CosminiDBConnectionString"] ;
-builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(connectionString)));
+var cs = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(c)));
 
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
