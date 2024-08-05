@@ -20,9 +20,9 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Configuration.AddUserSecrets<Program>();
 builder.Configuration.AddEnvironmentVariables();
-var cs = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
-builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(cs)));
+builder.Services.AddDbContext<CosminisOfficialDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CosminiDBConnectionString");));
 
 builder.Services.AddScoped<ICompanionDAO, CompanionRepo>();
 builder.Services.AddScoped<IFriendsDAO, FriendsRepo>();
